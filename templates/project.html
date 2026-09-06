@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ project.title }}{% endblock %}
+
+{% block content %}
+  <section class="standalone-page project-page">
+    <a class="back-link" href="{{ url_for('index') }}">&larr; Back to Work</a>
+    <span class="meta project-meta">{{ project.meta }}</span>
+    <h1 class="project-title">{{ project.title }}</h1>
+    <p class="project-summary">{{ project.description }}</p>
+    {% for paragraph in project.detail %}
+    <p class="project-detail">{{ paragraph }}</p>
+    {% endfor %}
+  </section>
+{% endblock %}

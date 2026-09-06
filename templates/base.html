@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ content.name }} — {% block title %}Case File{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Anonymous+Pro:wght@400;700&family=Permanent+Marker&family=Manrope:wght@400;500;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="{% block body_class %}site-open{% endblock %}">
+
+{% block landing %}{% endblock %}
+
+<main id="site">
+  <nav class="site-nav">
+    <div class="nav-brand">{{ content.name }}</div>
+    <div class="nav-tabs">
+      <div class="tab-group">
+        {% for item in content.nav[:-1] %}
+        <a class="nav-tab{% if item.endpoint == active_page %} active{% endif %}" href="{{ url_for(item.endpoint) }}">{{ item.label }}</a>
+        {% endfor %}
+      </div>
+      {% set last_item = content.nav[-1] %}
+      <a class="nav-tab-pill{% if last_item.endpoint == active_page %} active{% endif %}" href="{{ url_for(last_item.endpoint) }}">{{ last_item.label }}</a>
+    </div>
+  </nav>
+
+  {% block content %}{% endblock %}
+
+</main>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% block extra_scripts %}{% endblock %}
+</body>
+</html>

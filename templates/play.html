@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Play{% endblock %}
+{% block body_class %}site-open nav-autohide page-play{% endblock %}
+
+{% block content %}
+  <h1 class="art-heading">{{ content.art_heading }}</h1>
+  <!--
+  <section class="scroll-video-section" id="scrollVideoSection">
+    <div class="scroll-video-pin">
+      <canvas id="scrollVideoCanvas"></canvas>
+    </div>
+  </section> -->
+
+  <section class="sketchbook-section" id="sketchbookSection">
+    <div class="sketchbook-pin">
+      <div class="sketchbook" id="sketchbook" data-pages='{{ content.sketchbook | tojson }}'>
+        <button class="sb-arrow sb-prev" id="sbPrev" aria-label="Previous pages">&#8249;</button>
+        <div class="sb-spread" id="sbSpread">
+          <div class="sb-page sb-page-left"><img id="sbImgLeft" src="" alt="Sketchbook page"></div>
+          <div class="sb-page sb-page-right"><img id="sbImgRight" src="" alt="Sketchbook page"></div>
+        </div>
+        <button class="sb-arrow sb-next" id="sbNext" aria-label="Next pages">&#8250;</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="standalone-page photography-page">
+    <h2 class="photo-heading">{{ content.photography_heading }}</h2>
+  </section>
+
+  <section class="photo-fullscreen-section" id="photoFullscreenSection">
+    <div class="photo-fullscreen-pin">
+      <div class="photo-fullscreen-stack" id="photoStack" data-photos='{{ content.photography_photos | tojson }}'></div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="{{ url_for('static', filename='js/scroll-video.js') }}"></script>
+<script src="{{ url_for('static', filename='js/art-heading-animation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/photo-heading-animation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/sketchbook.js') }}"></script>
+<script src="{{ url_for('static', filename='js/photography-fullscreen.js') }}"></script>
+{% endblock %}
