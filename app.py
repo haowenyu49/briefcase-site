@@ -1,4 +1,5 @@
 from flask import Flask, render_template, abort
+import webbrowser
 
 from content import SITE_CONTENT
 

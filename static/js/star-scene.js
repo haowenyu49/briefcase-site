@@ -84,11 +84,11 @@
     const size = new THREE.Vector3();
     box.getSize(size);
     const maxDim = Math.max(size.x, size.y, size.z) || 1;
-    obj.scale.setScalar(2.4 / maxDim);
+    obj.scale.setScalar(3.2 / maxDim);
 
     const center = new THREE.Vector3();
     box.getCenter(center);
-    obj.position.sub(center.multiplyScalar(2.4 / maxDim));
+    obj.position.sub(center.multiplyScalar(3.2 / maxDim));
 
     star = obj;
     scene.add(star);

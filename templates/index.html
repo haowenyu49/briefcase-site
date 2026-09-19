@@ -49,6 +49,7 @@
 
   <section id="work-projects">
     <h2 class="section-title">Work</h2>
+    <h2 class ="section-description">This is a blog of sorts - more for fond reflections and less for technical bragging</h2>
     {% for project in content.projects %}
     <a class="folder" href="{{ url_for('project_detail', slug=project.slug) }}">
       <span class="meta">{{ project.meta }}</span>

@@ -4,11 +4,31 @@
 {% block content %}
   <section class="standalone-page project-page">
     <a class="back-link" href="{{ url_for('index') }}">&larr; Back to Work</a>
-    <span class="meta project-meta">{{ project.meta }}</span>
-    <h1 class="project-title">{{ project.title }}</h1>
-    <p class="project-summary">{{ project.description }}</p>
-    {% for paragraph in project.detail %}
-    <p class="project-detail">{{ paragraph }}</p>
-    {% endfor %}
+
+    <div class="project-layout">
+      <div class="project-text">
+        <span class="meta project-meta">{{ project.meta }}</span>
+        <h1 class="project-title">{{ project.title }}</h1>
+        <p class="project-summary">{{ project.description }}</p>
+        {% for paragraph in project.detail %}
+        <p class="project-detail">{{ paragraph | safe }}</p>
+        {% endfor %}
+      </div>
+
+      {% if project.media %}
+      <div class="project-media-carousel" data-media='{{ project.media | tojson }}'>
+        <div class="pmc-viewport">
+          <div class="pmc-track"></div>
+        </div>
+        <button class="pmc-arrow pmc-prev" aria-label="Previous">&#8249;</button>
+        <button class="pmc-arrow pmc-next" aria-label="Next">&#8250;</button>
+        <div class="pmc-dots"></div>
+      </div>
+      {% endif %}
+    </div>
   </section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/project-media-carousel.js') }}"></script>
 {% endblock %}
